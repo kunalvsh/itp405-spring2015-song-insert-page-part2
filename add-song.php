@@ -24,7 +24,7 @@
 			$song->setPrice($_POST['price']);
 			$song->save();
 
-			$session->getFlashBag()->add('insert-success', "The song " . $song->getTitle() . " was inserted successfully, with an ID of " . $song->getId());
+    		$session->getFlashBag()->add('insert-success', "The song " . $song->getTitle() . " with an ID of " . $song->getId() . " was inserted successfully!");
 
 			header('Location: add-song.php');
 			exit;
@@ -80,32 +80,10 @@
 				<input type="submit">
 			</form>
 
-<!-- 	<?php
 
-
-		if (isset($_POST['title'])):
-			
-			$song = new Song();
-			$song->setTitle($_POST['title']);
-			$song->setArtistID($_POST['artist_id']);
-			$song->setGenreID($_POST['genre_id']);
-			$song->setPrice($_POST['price']);
-			$song->save();
-
-			$session->getFlashBag()->add('insert-success', "The song " . $song->getTitle() . " was inserted successfully, with an ID of " . $song->getId());
-
-			header('Location: add-song.php');
-			exit;
-
-
-
-	?>
-	<?php endif; ?> -->
 
 	<?php foreach ($session->getFlashBag()->get('insert-success') as $message): ?>
-		<p>
-			<?php echo $message ?>
-		</p>
+		<p><?php echo $message ?></p>
 	<?php endforeach; ?>
 
 
