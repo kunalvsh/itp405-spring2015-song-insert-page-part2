@@ -1,6 +1,7 @@
 <?php
 
 namespace Itp\Base;
+use \PDO;
 
 class Database {
 

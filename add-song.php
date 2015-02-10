@@ -6,12 +6,30 @@
 		use \Itp\Music\Song;
 		use \Symfony\Component\HttpFoundation\Session\Session;
 
+		$session = new \Symfony\Component\HttpFoundation\Session\Session();
+		$session->start();
 
 		$artistQuery = new ArtistQuery();
 		$genreQuery = new GenreQuery();
 
 		$artists = $artistQuery->getAll();
 		$genres  = $genreQuery->getAll();
+
+		if (isset($_POST['title'])) {
+			
+			$song = new Song();
+			$song->setTitle($_POST['title']);
+			$song->setArtistID($_POST['artist_id']);
+			$song->setGenreID($_POST['genre_id']);
+			$song->setPrice($_POST['price']);
+			$song->save();
+
+			$session->getFlashBag()->add('insert-success', "The song " . $song->getTitle() . " was inserted successfully, with an ID of " . $song->getId());
+
+			header('Location: add-song.php');
+			exit;
+
+		}
 
 ?>
 
@@ -62,10 +80,8 @@
 				<input type="submit">
 			</form>
 
-	<?php
+<!-- 	<?php
 
-		$session = new \Symfony\Component\HttpFoundation\Session\Session();
-		$session->start();
 
 		if (isset($_POST['title'])):
 			
@@ -84,7 +100,7 @@
 
 
 	?>
-	<?php endif; ?>
+	<?php endif; ?> -->
 
 	<?php foreach ($session->getFlashBag()->get('insert-success') as $message): ?>
 		<p>

@@ -2,6 +2,7 @@
 
 namespace Itp\Music;
 use \Itp\Base\Database;
+use \PDO;
 
 class ArtistQuery extends Database {
 
